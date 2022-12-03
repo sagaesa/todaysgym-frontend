@@ -19,12 +19,14 @@ export interface UserProps {
   preferExercises: PreferExercises[];
 }
 
-const UserContext = createContext({});
+export const UserContext = createContext({});
 
-const UserProvider = ({ children }: React.PropsWithChildren) => {
+export const UserProvider = ({ children }: React.PropsWithChildren) => {
   const [userProps, setUserProps] = useState<UserProps | undefined>(undefined);
 
   const value = { user: userProps, dispatch: setUserProps };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
+
+export const UserConsumer = UserContext.Consumer;
