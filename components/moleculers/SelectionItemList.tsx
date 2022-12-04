@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { SelectionItem } from "../atoms/SelectionItem";
 export interface SelectItemListProps {
-  onPress(): void;
+  onPress: (index: number) => () => void;
   itemTitleList: string[];
   itemActiveList: boolean[];
 }
@@ -16,7 +16,7 @@ export const SelectItemList = ({
       {itemActiveList.map((val, index) => {
         return (
           <SelectionItem
-            onPress={onPress}
+            onPress={onPress(index)}
             title={itemTitleList[index]}
             active={val}
           ></SelectionItem>
@@ -29,7 +29,9 @@ export const SelectItemList = ({
 const styles = StyleSheet.create({
   container: {
     display: "flex",
+    flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "space-around",
     width: Dimensions.get("window").width - 80,
   },
 });

@@ -1,13 +1,62 @@
-import { StyleSheet } from "react-native";
+import { PerpectiveTransform, StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 import { Button } from "../components/atoms/Button";
 import { View, Text } from "react-native";
-import { useEffect, useState } from "react";
-import { RootStackParamList } from "../types";
+import { useContext, useEffect, useState } from "react";
+import { PreferExercises, UserContext } from "../global/context/userContext";
+import { SelectItemList } from "../components/moleculers/SelectionItemList";
+import { useNavigation } from "@react-navigation/native";
 
 export const SelectionScreen = () => {
+  const selectItemTitleList: PreferExercises[] = [
+    "헬스",
+    "주짓수",
+    "무에타이",
+    "극진 가라데",
+    "태권도",
+    "삼보",
+    "절권도",
+    "킥복싱",
+    "우슈",
+    "프로 레슬링",
+    "복싱",
+    "쿠도",
+  ];
   const [submitAcitve, setSubmitActive] = useState<boolean>(true);
-  useEffect(() => {}, []);
+  const [selectItemActiveList, setSelectItemActiveList] = useState<boolean[]>(
+    selectItemTitleList.map(() => false)
+  );
+
+  const { user, dispatch } = useContext(UserContext);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const activeUserPreferInfoLength = selectItemTitleList.filter(
+      (title, index) => selectItemActiveList[index] === true
+    ).length;
+
+    console.log(activeUserPreferInfoLength);
+
+    if (activeUserPreferInfoLength !== 0) {
+      setSubmitActive(false);
+    } else {
+      setSubmitActive(true);
+    }
+  }, [selectItemActiveList, setSelectItemActiveList]);
+
+  const handleItemClick = (index: number) => () => {
+    const changeArray = [...selectItemActiveList];
+    changeArray[index] = !changeArray[index];
+    setSelectItemActiveList(changeArray);
+  };
+
+  const handleSubmit = () => {
+    const userPreferInfo = selectItemTitleList.filter(
+      (title, index) => selectItemActiveList[index] === true
+    );
+    dispatch({ ...user, preferExercises: userPreferInfo });
+  };
 
   return (
     <View style={styles.container}>
@@ -16,7 +65,18 @@ export const SelectionScreen = () => {
       </View>
       <View></View>
       <View>
-        <Button onClickHandler={() => {}} title="완료" disabled={true}></Button>
+        <SelectItemList
+          itemActiveList={selectItemActiveList}
+          itemTitleList={selectItemTitleList}
+          onPress={handleItemClick}
+        ></SelectItemList>
+      </View>
+      <View>
+        <Button
+          onClickHandler={handleSubmit}
+          title="완료"
+          disabled={submitAcitve}
+        ></Button>
       </View>
     </View>
   );

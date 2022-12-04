@@ -16,8 +16,10 @@ export const LoginScreen = () => {
   const [submitActive, setSubmitActive] = useState<boolean>(true);
 
   useEffect(() => {
-    if (id !== undefined && pwd !== undefined) {
+    if (id !== undefined && pwd !== undefined && id !== "" && pwd !== "") {
       setSubmitActive(false);
+    } else {
+      setSubmitActive(true);
     }
   }, [id, pwd, setId, setPwd]);
 

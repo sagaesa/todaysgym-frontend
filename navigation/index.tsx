@@ -37,6 +37,12 @@ function RootNavigator() {
     <Stack.Navigator initialRouteName="LoginScreen">
       <Stack.Screen
         options={{ headerShown: false }}
+        name="Root"
+        component={BottomTabNavigator}
+      ></Stack.Screen>
+
+      <Stack.Screen
+        options={{ headerShown: false }}
         name="LoginScreen"
         component={LoginScreen}
       ></Stack.Screen>
