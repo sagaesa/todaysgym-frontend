@@ -15,6 +15,7 @@ import { CategoryScreen } from "../screens/CategoryScreen";
 import { CalendarScreen } from "../screens/CalendarScreen";
 import { DailyLogScreen } from "../screens/DailyLogScreen";
 import { BoardScreen } from "../screens/BoardScreen";
+import { WriteBoardScreen } from "../screens/WriteBoardScreen";
 
 export default function Navigation({}: {}) {
   return (
@@ -32,6 +33,10 @@ const Stack = createNativeStackNavigator();
 function RootNavigator() {
   return (
     <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Screen
+        name="WriteBoardScreen"
+        component={WriteBoardScreen}
+      ></Stack.Screen>
       <Stack.Screen name="BoardScreen" component={BoardScreen}></Stack.Screen>
       <Stack.Screen
         options={{ headerShown: false }}
