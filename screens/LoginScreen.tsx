@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { View, Text, Image } from "react-native";
 import { Button } from "../components/atoms/Button";
 import { TextInput } from "../components/atoms/TextInput";
@@ -22,7 +22,11 @@ export const LoginScreen = () => {
   }, [id, pwd, setId, setPwd]);
 
   const handleSumbit = () => {
+    console.log("Login Succeed");
     dispatch({ ...user, id: id, password: pwd });
+    navigation.navigate("SelectionScreen", {
+      loginInfo: { id: id, password: pwd },
+    });
   };
 
   return (
@@ -66,6 +70,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
+    height: Dimensions.get("window").height,
   },
 
   logo: {

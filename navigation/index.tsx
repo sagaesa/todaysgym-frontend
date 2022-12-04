@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Pressable } from "react-native";
+import { Pressable } from "react-native";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -16,8 +16,8 @@ import { LoginScreen } from "../screens/LoginScreen";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import { RootTabParamList, RootTabScreenProps } from "../types";
-import LinkingConfiguration from "./LinkingConfiguration";
 import { SelectionScreen } from "../screens/SelectionScreen";
+import { UserProps } from "../global/context/userContext";
 
 export default function Navigation({}: {}) {
   return (
@@ -32,12 +32,20 @@ export default function Navigation({}: {}) {
  * https://reactnavigation.org/docs/modal
  */
 const Stack = createNativeStackNavigator();
-
 function RootNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
-      <Stack.Screen name="Selection" component={SelectionScreen}></Stack.Screen>
+    <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="LoginScreen"
+        component={LoginScreen}
+      ></Stack.Screen>
+
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="SelectionScreen"
+        component={SelectionScreen}
+      ></Stack.Screen>
     </Stack.Navigator>
   );
 }
