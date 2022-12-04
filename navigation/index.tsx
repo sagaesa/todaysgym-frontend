@@ -44,13 +44,11 @@ function RootNavigator() {
         name="Root"
         component={BottomTabNavigator}
       ></Stack.Screen>
-
       <Stack.Screen
         options={{ headerShown: false }}
         name="LoginScreen"
         component={LoginScreen}
       ></Stack.Screen>
-
       <Stack.Screen
         options={{ headerShown: false }}
         name="SelectionScreen"
