@@ -18,6 +18,7 @@ declare global {
 }
 
 export type RootStackParamList = {
+  BoardScreen: { title: string };
   LoginScreen: undefined;
   SelectionScreen: { loginInfo: Omit<UserProps, "preferExercises"> };
   Root: NavigatorScreenParams<RootTabParamList> | undefined;

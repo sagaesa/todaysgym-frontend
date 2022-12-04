@@ -9,11 +9,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { LoginScreen } from "../screens/LoginScreen";
-import { RootTabParamList, RootTabScreenProps } from "../types";
+import { RootTabParamList } from "../types";
 import { SelectionScreen } from "../screens/SelectionScreen";
 import { CategoryScreen } from "../screens/CategoryScreen";
 import { CalendarScreen } from "../screens/CalendarScreen";
 import { DailyLogScreen } from "../screens/DailyLogScreen";
+import { BoardScreen } from "../screens/BoardScreen";
 
 export default function Navigation({}: {}) {
   return (
@@ -31,6 +32,7 @@ const Stack = createNativeStackNavigator();
 function RootNavigator() {
   return (
     <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Screen name="BoardScreen" component={BoardScreen}></Stack.Screen>
       <Stack.Screen
         options={{ headerShown: false }}
         name="Root"
@@ -65,7 +67,7 @@ function BottomTabNavigator() {
         name="Category"
         component={CategoryScreen}
         options={{
-          title: "category",
+          title: "게시판",
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color} name="home"></TabBarIcon>
           ),
@@ -75,7 +77,7 @@ function BottomTabNavigator() {
         name="Calendar"
         component={CalendarScreen}
         options={{
-          title: "calendar",
+          title: "일정",
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color} name="calendar"></TabBarIcon>
           ),
@@ -85,6 +87,7 @@ function BottomTabNavigator() {
         name="DailyLog"
         component={DailyLogScreen}
         options={{
+          headerShown: false,
           title: "dailylog",
           tabBarIcon: ({ color }) => (
             <TabBarIcon color={color} name="user"></TabBarIcon>

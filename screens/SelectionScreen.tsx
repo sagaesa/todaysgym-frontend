@@ -56,6 +56,7 @@ export const SelectionScreen = () => {
       (title, index) => selectItemActiveList[index] === true
     );
     dispatch({ ...user, preferExercises: userPreferInfo });
+    navigation.navigate("Root");
   };
 
   return (

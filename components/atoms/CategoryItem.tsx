@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, Pressable, StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import { TouchableHighlight } from "react-native";
 
@@ -14,9 +14,9 @@ export const CategoryItem = ({ onClick, title, style }: CategoryItemProps) => {
   const itemStyles = categoryStyles(style);
 
   return (
-    <TouchableHighlight style={itemStyles.container} onPress={onClick}>
+    <Pressable style={itemStyles.container} onPress={onClick}>
       <Text style={itemStyles.title}>{title}</Text>
-    </TouchableHighlight>
+    </Pressable>
   );
 };
 
@@ -31,15 +31,14 @@ const categoryStyles = (style: CategoryItemStyle) => {
       return StyleSheet.create({
         container: {
           display: "flex",
-          alignItems: "center",
           padding: 13,
           width: Dimensions.get("window").width - 60,
           borderTopStartRadius: 10,
           borderTopEndRadius: 10,
-          borderTopWidth: 1,
           borderLeftWidth: 1,
           borderRightWidth: 1,
-          borderColor: "#F4F4F4",
+          borderTopWidth: 1,
+          borderColor: "#000000",
         },
         title: titleStyle,
       });
@@ -54,7 +53,7 @@ const categoryStyles = (style: CategoryItemStyle) => {
           borderLeftWidth: 1,
           borderRightWidth: 1,
           borderBottomWidth: 1,
-          borderColor: "#F4F4F4",
+          borderColor: "#000000",
         },
         title: titleStyle,
       });
@@ -66,7 +65,7 @@ const categoryStyles = (style: CategoryItemStyle) => {
           width: Dimensions.get("window").width - 60,
           borderLeftWidth: 1,
           borderRightWidth: 1,
-          borderColor: "#F4F4F4",
+          borderColor: "#000000",
         },
         title: titleStyle,
       });
