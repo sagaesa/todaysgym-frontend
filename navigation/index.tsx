@@ -8,16 +8,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { Pressable } from "react-native";
-
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
 import { LoginScreen } from "../screens/LoginScreen";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
 import { RootTabParamList, RootTabScreenProps } from "../types";
 import { SelectionScreen } from "../screens/SelectionScreen";
-import { UserProps } from "../global/context/userContext";
+import { CategoryScreen } from "../screens/CategoryScreen";
+import { CalendarScreen } from "../screens/CalendarScreen";
+import { DailyLogScreen } from "../screens/DailyLogScreen";
 
 export default function Navigation({}: {}) {
   return (
@@ -63,49 +59,85 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
   return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}
-    >
+    <BottomTab.Navigator initialRouteName="Category">
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Category"
+        component={CategoryScreen}
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "category",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon color={color} name="home"></TabBarIcon>
+          ),
         }}
-      />
+      ></BottomTab.Screen>
+      <BottomTab.Screen
+        name="Calendar"
+        component={CalendarScreen}
+        options={{
+          title: "calendar",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon color={color} name="calendar"></TabBarIcon>
+          ),
+        }}
+      ></BottomTab.Screen>
+      <BottomTab.Screen
+        name="DailyLog"
+        component={DailyLogScreen}
+        options={{
+          title: "dailylog",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon color={color} name="user"></TabBarIcon>
+          ),
+        }}
+      ></BottomTab.Screen>
     </BottomTab.Navigator>
   );
 }
+// function BottomTabNavigator() {
+//   const colorScheme = useColorScheme();
+
+//   return (
+//     <BottomTab.Navigator
+//       initialRouteName="TabOne"
+//       screenOptions={{
+//         tabBarActiveTintColor: Colors[colorScheme].tint,
+//       }}
+//     >
+//       <BottomTab.Screen
+//         name="TabOne"
+//         component={TabOneScreen}
+//         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
+//           title: "Tab One",
+//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+//           headerRight: () => (
+//             <Pressable
+//               onPress={() => navigation.navigate("Modal")}
+//               style={({ pressed }) => ({
+//                 opacity: pressed ? 0.5 : 1,
+//               })}
+//             >
+//               <FontAwesome
+//                 name="info-circle"
+//                 size={25}
+//                 color={Colors[colorScheme].text}
+//                 style={{ marginRight: 15 }}
+//               />
+//             </Pressable>
+//           ),
+//         })}
+//       />
+//       <BottomTab.Screen
+//         name="TabTwo"
+//         component={TabTwoScreen}
+//         options={{
+//           title: "Tab Two",
+//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+//         }}
+//       />
+//     </BottomTab.Navigator>
+//   );
+// }
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
