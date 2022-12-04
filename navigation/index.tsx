@@ -36,6 +36,7 @@ function RootNavigator() {
       <Stack.Screen
         name="WriteBoardScreen"
         component={WriteBoardScreen}
+        options={{ title: "글 쓰기" }}
       ></Stack.Screen>
       <Stack.Screen name="BoardScreen" component={BoardScreen}></Stack.Screen>
       <Stack.Screen

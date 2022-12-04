@@ -21,17 +21,17 @@ export const WriteBoardScreen = () => {
     navigation.goBack();
   };
 
-  const handleChange = (text: string) => () => {
+  const handleChange = (text: string) => {
+    console.log("Content Change!");
     setContent(text);
   };
 
   useEffect(() => {
-    navigation.setOptions({
-      headerTitle: <View>{boardTitle}</View>,
-    });
-  }, [navigation, content, boardTitle]);
+    navigation.setOptions({});
+  }, [navigation, boardTitle]);
 
   useEffect(() => {
+    console.log("ContentLength", content.length);
     if (content.length !== 0) {
       setSubmitDisabled(false);
     } else {
@@ -41,12 +41,17 @@ export const WriteBoardScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TextArea onChangeHandler={handleChange} />
-      <Button
-        title="완료"
-        onClickHandler={handleSubmit}
-        disabled={submitDisabled}
+      <TextArea
+        onChangeHandler={handleChange}
+        placeholder="내용을 입력해주세요."
       />
+      <View style={styles.submitButton}>
+        <Button
+          title="완료"
+          onClickHandler={handleSubmit}
+          disabled={submitDisabled}
+        />
+      </View>
     </View>
   );
 };
@@ -55,11 +60,9 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "column",
-    height: Dimensions.get("window").height,
-    paddingBottom: 50,
+    height: Dimensions.get("window").height - 100,
+    alignItems: "center",
+    justifyContent: "space-between",
   },
-
-  submitButton: {
-    marginTop: "auto",
-  },
+  submitButton: {},
 });

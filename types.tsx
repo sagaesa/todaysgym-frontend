@@ -34,8 +34,7 @@ export type RootTabParamList = {
   Category: undefined;
   Calendar: undefined;
   DailyLog: undefined;
-  TabOne: undefined;
-  TabTwo: undefined;
+  WriteDailyLog: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
