@@ -15,15 +15,18 @@ export type PreferExercises =
   | "쿠도";
 
 export interface UserProps {
-  id: string;
-  preferExercises: PreferExercises[];
+  id?: string;
+  password?: string;
+  preferExercises?: PreferExercises[];
 }
 
-export const UserContext = createContext({});
+export const UserContext = createContext<{
+  user?: UserProps;
+  dispatch: React.Dispatch<React.SetStateAction<UserProps | undefined>>;
+}>({ dispatch: () => {} });
 
 export const UserProvider = ({ children }: React.PropsWithChildren) => {
   const [userProps, setUserProps] = useState<UserProps | undefined>(undefined);
-
   const value = { user: userProps, dispatch: setUserProps };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
