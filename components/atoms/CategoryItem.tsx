@@ -31,6 +31,7 @@ const categoryStyles = (style: CategoryItemStyle) => {
       return StyleSheet.create({
         container: {
           display: "flex",
+          alignItems: "center",
           padding: 13,
           width: Dimensions.get("window").width - 60,
           borderTopStartRadius: 10,
