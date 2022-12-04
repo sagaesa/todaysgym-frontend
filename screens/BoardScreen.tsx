@@ -20,6 +20,9 @@ export const BoardScreen = () => {
     navigation.setOptions({ title: boardTitle });
   }, [boardTitle, navigation]);
 
+  const handleWriteButtonClick = () => {
+    navigation.navigate("WriteBoardScreen", { title: boardTitle });
+  };
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -27,7 +30,7 @@ export const BoardScreen = () => {
           <BoardItem onClick={() => {}} itemInfo={boardData}></BoardItem>
         ))}
       </ScrollView>
-      <Pressable style={styles.writeBoard}>
+      <Pressable style={styles.writeBoard} onPress={handleWriteButtonClick}>
         <Text style={styles.writeBoardText}>글 쓰기</Text>
       </Pressable>
     </View>

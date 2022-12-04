@@ -1,7 +1,7 @@
 import { RouteProp, useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { RootStackParamList } from "../types";
 import { TextArea } from "../components/moleculers/TextArea";
 import { Button } from "../components/atoms/Button";
@@ -16,8 +16,14 @@ export const WriteBoardScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, "WriteBoardScreen">>();
   const boardTitle = route.params.title;
 
-  const handleSubmit = () => {};
-  const handleChange = (text: string) => () => {};
+  const handleSubmit = () => {
+    // TODO Implement create board
+    navigation.goBack();
+  };
+
+  const handleChange = (text: string) => () => {
+    setContent(text);
+  };
 
   useEffect(() => {
     navigation.setOptions({
