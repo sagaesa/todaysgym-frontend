@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { View, Text } from "react-native";
 import { ScrollView } from "react-native";
 import { mockBoardDataGenerator } from "../database/mockBoardData";
@@ -8,6 +8,7 @@ import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "../types";
 import { useEffect } from "react";
 import { BoardItem } from "../components/moleculers/BoardItem";
+import { Pressable } from "react-native";
 
 export const BoardScreen = () => {
   const navigation = useNavigation();
@@ -20,27 +21,37 @@ export const BoardScreen = () => {
   }, [boardTitle, navigation]);
 
   return (
-    <ScrollView>
-      {boardData.map((boardData, index) => (
-        <BoardItem onClick={() => {}} itemInfo={boardData}></BoardItem>
-      ))}
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView>
+        {boardData.map((boardData, index) => (
+          <BoardItem onClick={() => {}} itemInfo={boardData}></BoardItem>
+        ))}
+      </ScrollView>
+      <Pressable style={styles.writeBoard}>
+        <Text style={styles.writeBoardText}>글 쓰기</Text>
+      </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    flexDirection: "column",
+    flex: 1,
   },
 
   writeBoard: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 24,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     width: 133,
     height: 55,
+    borderRadius: 15,
+    borderWidth: 1,
+    backgroundColor: "#FFFFFF",
+    position: "absolute",
+    left: "50%",
+    marginLeft: -66,
+    bottom: 24,
   },
 
   writeBoardText: {

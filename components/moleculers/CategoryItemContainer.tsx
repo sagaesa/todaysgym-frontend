@@ -5,6 +5,8 @@ import { CategoryItem } from "../atoms/CategoryItem";
 import { CategoryItemStyle } from "../atoms/CategoryItem";
 
 export const CategoryItemContainer = () => {
+  const navigation = useNavigation();
+
   const categoryTitleList = [
     "전체",
     "주짓수",
@@ -15,7 +17,9 @@ export const CategoryItemContainer = () => {
   ];
 
   //TODO: Implement navigate with title information
-  const handleCategoryItemClick = (title: string) => () => {};
+  const handleCategoryItemClick = (title: string) => () => {
+    navigation.navigate("BoardScreen", { title: title });
+  };
 
   const getStyle = (index: number, length: number): CategoryItemStyle => {
     if (index === 0) return "TOP";

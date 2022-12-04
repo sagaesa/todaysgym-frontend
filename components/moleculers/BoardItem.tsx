@@ -18,13 +18,13 @@ export const BoardItem = ({ onClick, itemInfo }: BoardItemProps) => {
   return (
     <Pressable style={styles.container} onPress={onClick}>
       <View>
-        <Text>{title}</Text>
+        <Text style={styles.titleText}>{title}</Text>
       </View>
       <View>
-        <Text>{content}</Text>
+        <Text style={styles.contentText}>{content}</Text>
       </View>
       <View>
-        <Text>{`${date} | ${author}`}</Text>
+        <Text style={styles.authorText}>{`${date} | ${author}`}</Text>
       </View>
     </Pressable>
   );
