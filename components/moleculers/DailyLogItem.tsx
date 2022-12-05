@@ -18,7 +18,12 @@ export const DailyLogPictureList = ({
 
   return (
     <View style={styles.picture}>
-      <Image style={styles.picture} source={{}}></Image>
+      <Image
+        style={styles.picture}
+        source={{
+          uri: imagePathList[0],
+        }}
+      ></Image>
     </View>
   );
 };
@@ -28,13 +33,18 @@ export const DailyLogItem = ({
   author,
   content,
 }: DailyLogProps) => {
-  <View style={styles.container}>
-    <View style={styles.header}>
-      <Text style={styles.headerTitle}>{author}</Text>
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{author}</Text>
+      </View>
+      <DailyLogPictureList imagePathList={imagePathList}></DailyLogPictureList>
+      <View style={styles.content}>
+        <Text style={styles.contentAuthor}>{author}</Text>
+        <Text style={styles.contentDescription}>{content}</Text>
+      </View>
     </View>
-    <DailyLogPictureList imagePathList={imagePathList}></DailyLogPictureList>
-    <View></View>
-  </View>;
+  );
 };
 
 const styles = StyleSheet.create({
@@ -47,6 +57,9 @@ const styles = StyleSheet.create({
     width: 390,
     height: 40,
     paddingLeft: 11,
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
   },
 
   headerTitle: {
@@ -59,12 +72,28 @@ const styles = StyleSheet.create({
     width: 390,
     height: 390,
   },
+
   picture: {
     width: 390,
     height: 390,
   },
+
   content: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
     width: 390,
     height: 40,
+    paddingLeft: 11,
+  },
+
+  contentAuthor: {
+    fontSize: 10,
+    fontWeight: "bold",
+  },
+
+  contentDescription: {
+    fontSize: 10,
+    marginLeft: 4,
   },
 });

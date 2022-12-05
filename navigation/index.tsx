@@ -16,6 +16,8 @@ import { CalendarScreen } from "../screens/CalendarScreen";
 import { DailyLogScreen } from "../screens/DailyLogScreen";
 import { BoardScreen } from "../screens/BoardScreen";
 import { WriteBoardScreen } from "../screens/WriteBoardScreen";
+import { WriteDailyLogScreen } from "../screens/WriteDailyLogScreen";
+import { BoardContentScreen } from "../screens/BoardContentScreen";
 
 export default function Navigation({}: {}) {
   return (
@@ -33,6 +35,15 @@ const Stack = createNativeStackNavigator();
 function RootNavigator() {
   return (
     <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Screen
+        name="BoardContentScreen"
+        component={BoardContentScreen}
+      ></Stack.Screen>
+      <Stack.Screen
+        name="WriteDailyLogScreen"
+        component={WriteDailyLogScreen}
+        options={{ title: "운동 기록하기" }}
+      ></Stack.Screen>
       <Stack.Screen
         name="WriteBoardScreen"
         component={WriteBoardScreen}
@@ -101,50 +112,6 @@ function BottomTabNavigator() {
     </BottomTab.Navigator>
   );
 }
-// function BottomTabNavigator() {
-//   const colorScheme = useColorScheme();
-
-//   return (
-//     <BottomTab.Navigator
-//       initialRouteName="TabOne"
-//       screenOptions={{
-//         tabBarActiveTintColor: Colors[colorScheme].tint,
-//       }}
-//     >
-//       <BottomTab.Screen
-//         name="TabOne"
-//         component={TabOneScreen}
-//         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-//           title: "Tab One",
-//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-//           headerRight: () => (
-//             <Pressable
-//               onPress={() => navigation.navigate("Modal")}
-//               style={({ pressed }) => ({
-//                 opacity: pressed ? 0.5 : 1,
-//               })}
-//             >
-//               <FontAwesome
-//                 name="info-circle"
-//                 size={25}
-//                 color={Colors[colorScheme].text}
-//                 style={{ marginRight: 15 }}
-//               />
-//             </Pressable>
-//           ),
-//         })}
-//       />
-//       <BottomTab.Screen
-//         name="TabTwo"
-//         component={TabTwoScreen}
-//         options={{
-//           title: "Tab Two",
-//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-//         }}
-//       />
-//     </BottomTab.Navigator>
-//   );
-// }
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/

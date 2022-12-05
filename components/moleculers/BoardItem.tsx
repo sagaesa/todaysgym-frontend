@@ -5,7 +5,7 @@ import { Pressable } from "react-native";
 export interface BoardItemInfo {
   title: string;
   content: string;
-  date: Date;
+  date: Date | string;
   author: string;
 }
 

@@ -20,6 +20,9 @@ declare global {
 export type RootStackParamList = {
   BoardScreen: { title: string };
   WriteBoardScreen: { title: string };
+  WriteDailyLogScreen: undefined;
+  BoardContentScreen: { title: string };
+
   LoginScreen: undefined;
   SelectionScreen: { loginInfo: Omit<UserProps, "preferExercises"> };
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
@@ -34,7 +37,6 @@ export type RootTabParamList = {
   Category: undefined;
   Calendar: undefined;
   DailyLog: undefined;
-  WriteDailyLog: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
